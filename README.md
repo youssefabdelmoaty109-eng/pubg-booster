@@ -1,4 +1,4 @@
-# PUBG Booster
+# PUBG Booster — GearUP Style
 
 An Arabic-first, mobile-first static diagnostic PWA for Android. It measures real HTTPS requests from the browser to a configurable test server, keeps a local history, and compares measurements before and after a manual network change.
 
