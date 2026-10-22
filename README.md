@@ -28,6 +28,14 @@ Open `http://localhost:8080` on the computer. To test from an Android phone on t
 
 For the simplest phone-only preview, publish the static files using the free GitHub Pages option below, then open the resulting HTTPS URL in Chrome on Android. The **Install** button requests PWA installation when Chrome offers it; if it does not, open Chrome's `⋮` menu and choose **Install app** or **Add to Home screen**. Installation needs the published HTTPS site and the service worker to load successfully.
 
+### Update the app from Android
+
+1. Open the public GitHub repository in Chrome and sign in to GitHub.
+2. Open the file to edit (`index.html`, `styles.css`, or `app.js`), choose the pencil/edit control, make the change, and commit it to `main`. For a replacement image or icon, use **Add file → Upload files** instead.
+3. GitHub Pages rebuilds the public site after the commit. Refresh the app URL after the Pages build finishes; if an installed PWA still shows an older copy, close and reopen it while online.
+
+For larger code changes, editing from a computer is more comfortable, but Android Chrome can perform the repository edit and commit without a separate website-builder app.
+
 ## Free static hosting with GitHub Pages
 
 1. Create a **public** GitHub repository (the free GitHub Pages option is available for public repositories on GitHub Free) and upload all app files at the repository root: `index.html`, `styles.css`, `app.js`, `manifest.webmanifest`, `sw.js`, `icon.svg`, `icon-192.png`, `icon-512.png`, and `README.md`.
