@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a1014">
+  <meta name="description" content="PUBG Booster — أداة عربية لتشخيص اتصال المتصفح بالشبكة دون ادعاء تغيير بنغ اللعبة.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <title>PUBG Booster — تشخيص الاتصال</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="PUBG Booster — الصفحة الرئيسية">
+      <span class="brand-mark"><span></span><span></span><span></span></span>
+      <span class="brand-copy"><strong>PUBG Booster</strong><small>CONNECTION DIAGNOSTICS</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="privacy-pill"><span class="privacy-dot"></span><span data-i18n="private">اختباراتك تبقى على جهازك</span></span>
+      <button class="install-button" id="installButton" type="button" data-i18n="installApp">تثبيت</button>
+      <button class="language-button" id="languageToggle" type="button" aria-label="Switch language">EN <span aria-hidden="true">↗</span></button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="eyebrow">تشخيص اتصال واضح للاعبين</span></div>
+        <h1><span data-i18n="heroLineOne">حلّل اتصالك.</span><br><span class="accent-text" data-i18n="heroLineTwo">وحسّن الشبكة يدويًا.</span></h1>
+        <p class="hero-description" data-i18n="heroDescription">اختبارات HTTPS حقيقية، ومقارنة قبل وبعد تغييراتك على Wi‑Fi — دون تعديل اللعبة أو تغيير مسار اتصالها.</p>
+        <div class="honesty-note"><span class="info-icon" aria-hidden="true">i</span><p data-i18n="honesty">القياس من المتصفح إلى خادم الاختبار، وليس بنغ PUBG Mobile. صفحة ويب لا تغيّر اتصال اللعبة ولا توجّهه عبر VPN.</p></div>
+      </div>
+      <div class="hero-orbit" aria-hidden="true">
+        <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
+        <div class="radar-sweep"></div><div class="radar-center"><span></span></div>
+        <span class="orbit-ping ping-a"></span><span class="orbit-ping ping-b"></span>
+        <span class="radar-label radar-label-top">NETWORK / 01</span><span class="radar-label radar-label-bottom">LIVE DIAGNOSTICS</span>
+      </div>
+    </section>
+
+    <section class="dashboard" aria-label="لوحة فحص الاتصال">
+      <div class="dashboard-heading">
+        <div><span class="section-kicker" data-i18n="livePanel">لوحة القياس</span><h2 data-i18n="dashboardTitle">حالة الاتصال</h2></div>
+        <div id="statusPill" class="status-pill"><span class="status-indicator"></span><span id="statusText" data-i18n="ready">جاهز للاختبار</span></div>
+      </div>
+
+      <div class="metric-grid" aria-live="polite">
+        <article class="metric-card metric-primary">
+          <div class="metric-top"><span data-i18n="average">متوسط الاستجابة</span><span class="metric-icon" aria-hidden="true">⌁</span></div>
+          <div class="metric-value"><strong id="averageValue">—</strong><span>ms</span></div>
+          <div class="metric-caption" data-i18n="browserToServer">المتصفح ← خادم الاختبار</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-top"><span data-i18n="minimum">الأقل</span><span class="metric-icon" aria-hidden="true">↓</span></div>
+          <div class="metric-value"><strong id="minimumValue">—</strong><span>ms</span></div>
+          <div class="metric-caption" data-i18n="fastestAttempt">أسرع محاولة ناجحة</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-top"><span data-i18n="maximum">الأعلى</span><span class="metric-icon" aria-hidden="true">↑</span></div>
+          <div class="metric-value"><strong id="maximumValue">—</strong><span>ms</span></div>
+          <div class="metric-caption" data-i18n="slowestAttempt">أبطأ محاولة ناجحة</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-top"><span data-i18n="jitterLabel">التذبذب (Jitter)</span><span class="metric-icon metric-blue" aria-hidden="true">≈</span></div>
+          <div class="metric-value"><strong id="jitterValue">—</strong><span>ms</span></div>
+          <div class="metric-caption" data-i18n="jitterCaption">متوسط الفرق بين محاولتين ناجحتين متتاليتين</div>
+        </article>
+        <article class="metric-card metric-failure">
+          <div class="metric-top"><span data-i18n="failureRate">نسبة فشل الطلبات</span><span class="metric-icon metric-blue" aria-hidden="true">!</span></div>
+          <div class="metric-value"><strong id="failureRateValue">—</strong><span>%</span></div>
+          <div class="metric-caption" data-i18n="failureRateCaption">فشل طلبات الاختبار، وليس فقدان حزم اللعبة</div>
+        </article>
+      </div>
+
+      <div class="work-grid">
+        <section class="panel test-panel">
+          <div class="panel-heading"><div><span class="section-kicker" data-i18n="testSetup">إعداد الاختبار</span><h3 data-i18n="runTest">اختبر اتصالك</h3></div><span class="live-tag"><span></span><span data-i18n="realMeasurement">قياس حقيقي</span></span></div>
+          <label class="field-label" for="endpointInput" data-i18n="endpointLabel">رابط خادم الاختبار</label>
+          <div class="input-wrap"><span class="input-lock" aria-hidden="true">↗</span><input id="endpointInput" type="url" inputmode="url" dir="ltr" spellcheck="false" autocomplete="url" value="https://httpbin.org/status/204?source=pubg-booster-web" aria-describedby="endpointHint"></div>
+          <p class="field-hint" id="endpointHint" data-i18n="endpointHint">استخدم رابط HTTPS عامًا يقبل طلبات GET من المتصفح (CORS). لا تستخدم عنوان خادم PUBG.</p>
+          <div class="settings-row">
+            <label class="field-label" for="countInput" data-i18n="attemptCount">عدد المحاولات</label>
+            <div class="stepper"><button id="decreaseCount" type="button" aria-label="تقليل عدد المحاولات">−</button><input id="countInput" type="number" min="1" max="20" value="5" inputmode="numeric" aria-label="عدد المحاولات"><button id="increaseCount" type="button" aria-label="زيادة عدد المحاولات">+</button></div>
+          </div>
+          <div class="button-stack">
+            <button class="primary-button" id="runButton" type="button"><span class="button-symbol" aria-hidden="true">◉</span><span data-i18n="startTest">ابدأ الاختبار</span><span class="button-arrow" aria-hidden="true">←</span></button>
+            <div class="compare-buttons">
+              <button class="secondary-button" id="beforeButton" type="button"><span aria-hidden="true">Ⅰ</span><span data-i18n="beforeChange">قياس قبل التغيير</span></button>
+              <button class="secondary-button" id="afterButton" type="button"><span aria-hidden="true">Ⅱ</span><span data-i18n="afterChange">قياس بعد التغيير</span></button>
+            </div>
+          </div>
+          <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+          <div class="test-footnote"><span aria-hidden="true">◷</span><span data-i18n="testFootnote">القياس حتى وصول ترويسات الاستجابة؛ قد تختلف النتيجة بحسب الشبكة والمتصفح والخادم.</span></div>
+        </section>
+
+        <section class="panel chart-panel">
+          <div class="panel-heading"><div><span class="section-kicker" data-i18n="lastRun">الاختبار الحالي</span><h3 data-i18n="responseTrend">محاولات الاستجابة</h3></div><span class="chart-unit">ms</span></div>
+          <div class="chart-area" id="chartArea" role="img" aria-label="رسم نتائج المحاولات"><div class="chart-empty"><span class="empty-orbit">⌁</span><span data-i18n="chartEmpty">ستظهر نتائج القياس هنا</span></div></div>
+          <div class="chart-legend"><span><i class="legend-dot success-dot"></i><span data-i18n="successful">ناجحة</span><b id="successCount">0</b></span><span><i class="legend-dot failure-dot"></i><span data-i18n="failed">فاشلة</span><b id="failureCount">0</b></span><span class="chart-legend-note" data-i18n="chartOnlyReal">النتائج الفعلية فقط</span></div>
+        </section>
+      </div>
+
+      <section class="panel comparison-panel">
+        <div class="panel-heading"><div><span class="section-kicker" data-i18n="manualComparison">مقارنة يدوية</span><h3 data-i18n="compareNetwork">قارن قبل وبعد تعديل الشبكة</h3></div><span class="compare-badge" aria-hidden="true">↔</span></div>
+        <p class="comparison-intro" data-i18n="compareIntro">شغّل قياس «قبل التغيير»، عدّل إعدادًا يدويًا مثل الاقتراب من الراوتر، ثم شغّل «بعد التغيير» على نفس الخادم وعدد المحاولات.</p>
+        <div class="comparison-slots">
+          <div class="comparison-slot"><span class="slot-label"><i class="slot-dot"></i><span data-i18n="beforeLabel">قبل التغيير</span></span><strong id="beforeValue">—</strong><small id="beforeMeta" data-i18n="awaitingMeasure">بانتظار القياس</small></div>
+          <div class="comparison-connector" aria-hidden="true">→</div>
+          <div class="comparison-slot"><span class="slot-label"><i class="slot-dot after-dot"></i><span data-i18n="afterLabel">بعد التغيير</span></span><strong id="afterValue">—</strong><small id="afterMeta" data-i18n="awaitingMeasure">بانتظار القياس</small></div>
+          <div class="comparison-result" id="comparisonResult"><span data-i18n="changeLabel">الفرق</span><strong id="differenceValue">—</strong></div>
+        </div>
+        <p class="comparison-caveat" data-i18n="compareCaveat">مقارنة وصفية بين قياسين للمتصفح؛ لا تثبت تغيّر بنغ اللعبة. أعد القياس أكثر من مرة إذا كانت النتائج متذبذبة.</p>
+      </section>
+
+      <section class="lower-grid">
+        <section class="panel tips-panel">
+          <div class="panel-heading"><div><span class="section-kicker" data-i18n="practicalTips">خطوات عملية</span><h3 data-i18n="guidanceTitle">جرّب هذه الخطوات</h3></div><span class="tips-icon" aria-hidden="true">✳</span></div>
+          <p class="tips-intro" id="tipsIntro" data-i18n="tipsDefault">ابدأ بقياس الاتصال، ثم جرّب تحسينات بسيطة يدويًا وأعد القياس للمقارنة.</p>
+          <ul class="tips-list" id="tipsList">
+            <li><span class="tip-number">01</span><span data-i18n="tipDefault1">اقترب من الراوتر، أو جرّب نطاق Wi‑Fi مختلفًا إن كان متاحًا.</span></li>
+            <li><span class="tip-number">02</span><span data-i18n="tipDefault2">أوقف التنزيلات والبث على الأجهزة الأخرى مؤقتًا.</span></li>
+            <li><span class="tip-number">03</span><span data-i18n="tipDefault3">أعد تشغيل الراوتر إذا استمر التقطّع، ثم قارن النتائج مرة أخرى.</span></li>
+          </ul>
+          <div class="no-magic"><span aria-hidden="true">↗</span><span data-i18n="noMagic">التغييرات على الشبكة يدوية؛ هذه الصفحة لا تغيّر إعدادات هاتفك أو اللعبة.</span></div>
+        </section>
+
+        <section class="panel history-panel">
+          <div class="panel-heading"><div><span class="section-kicker" data-i18n="savedOnDevice">محفوظ على جهازك</span><h3 data-i18n="recentHistory">سجل الاختبارات</h3></div><button id="clearHistory" class="text-button" type="button" data-i18n="clearHistory">مسح السجل</button></div>
+          <div id="historyList" class="history-list"><div class="history-empty"><span aria-hidden="true">◷</span><span data-i18n="historyEmpty">لا توجد اختبارات محفوظة بعد</span></div></div>
+          <div class="history-privacy"><span class="privacy-dot"></span><span data-i18n="localOnly">تُحفظ النتائج محليًا في هذا المتصفح فقط.</span></div>
+        </section>
+      </section>
+
+      <section class="panel profile-panel">
+        <div class="panel-heading"><div><span class="section-kicker" data-i18n="profileKicker">إعدادات هذا الجهاز</span><h3 data-i18n="profileTitle">ملف الاختبار</h3></div><span class="profile-icon" aria-hidden="true">◉</span></div>
+        <p class="profile-intro" data-i18n="profileIntro">تُستخدم هذه التفاصيل محليًا لتخصيص تجربتك فقط؛ لا تُرسل إلى خادم الاختبار.</p>
+        <div class="profile-fields">
+          <label><span data-i18n="gameName">اسم اللعبة</span><input id="gameNameInput" type="text" maxlength="40" value="PUBG Mobile" autocomplete="off"></label>
+          <label><span data-i18n="deviceName">اسم الجهاز</span><input id="deviceNameInput" type="text" maxlength="60" value="Infinix NOTE 40 5G" autocomplete="off"></label>
+        </div>
+        <div class="profile-save-row"><span id="profileSummary" class="profile-summary"></span><span id="profileSaveState" class="profile-save-state" data-i18n="savedLocally">يُحفظ محليًا</span></div>
+      </section>
+
+      <details class="panel explanation-panel">
+        <summary><span><span class="section-kicker" data-i18n="explainKicker">افهم الأرقام</span><strong data-i18n="explainTitle">ماذا تعني النتائج — وماذا لا تعني؟</strong></span><span class="details-plus" aria-hidden="true">+</span></summary>
+        <div class="explanation-grid">
+          <article><span class="explain-index">01 / RTT</span><h4 data-i18n="explainLatencyTitle">زمن الاستجابة</h4><p data-i18n="explainLatency">الوقت من إرسال المتصفح طلب HTTPS إلى وصول ترويسات الرد من الخادم المحدد. يتأثر بالواي فاي، ومزوّد الخدمة، والمسار، والمتصفح، وحمل الخادم.</p></article>
+          <article><span class="explain-index">02 / JITTER</span><h4 data-i18n="explainJitterTitle">التذبذب</h4><p data-i18n="explainJitter">متوسط مقدار الفرق بين كل نتيجتين ناجحتين متتاليتين. يحتاج إلى محاولتين ناجحتين متجاورتين على الأقل؛ لذلك قد يظهر «—» عند قلة البيانات.</p></article>
+          <article><span class="explain-index">03 / FAILURES</span><h4 data-i18n="explainFailureTitle">فشل الطلبات</h4><p data-i18n="explainFailure">النسبة تحسب طلبات الاختبار التي انتهت بخطأ HTTP أو تعذّر وصولها/انتهت مهلتها. حظر CORS قد يبدو كخطأ شبكة. هذه ليست قراءة من داخل اللعبة ولا قياسًا مؤكدًا لفقدان حزم PUBG.</p></article>
+          <article><span class="explain-index">04 / GAME PATH</span><h4 data-i18n="explainGameTitle">اتصال اللعبة</h4><p data-i18n="explainGame">المتصفح وتطبيق PUBG مساران منفصلان. تسريع شبيه بخدمة GearUP يتطلب مكوّنًا مناسبًا على الجهاز وخوادم وسيطة وتكاملًا فعليًا؛ هذه النسخة لا تنفّذ VPN أو توجيهًا أو تعديلًا لملفات اللعبة.</p></article>
+        </div>
+      </details>
+
+      <footer class="page-footer"><span class="footer-brand">PUBG BOOSTER / DIAGNOSTICS</span><span data-i18n="footerNote">أداة مستقلة للتشخيص؛ ليست منتجًا رسميًا من PUBG أو Tencent أو GearUP.</span><span class="footer-version">PWA · 01</span></footer>
+    </section>
+  </main>
+</body>
+</html>
