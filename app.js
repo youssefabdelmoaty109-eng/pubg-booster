@@ -41,7 +41,7 @@
     }
   };
   Object.assign(translations.ar, {
-    appTitle:"PUBG Booster — تشخيص الاتصال",installApp:"تثبيت",installedApp:"مثبّت",installPrompted:"تم إرسال طلب التثبيت إلى المتصفح.",installedMessage:"تم تثبيت PUBG Booster.",installInstructions:"على Android، افتح قائمة Chrome ⋮ ثم اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية». يلزم فتح الموقع عبر HTTPS.",
+    appTitle:"PUBG Booster — GearUP Style",installApp:"تثبيت",installedApp:"مثبّت",installPrompted:"تم إرسال طلب التثبيت إلى المتصفح.",installedMessage:"تم تثبيت PUBG Booster.",installInstructions:"على Android، افتح قائمة Chrome ⋮ ثم اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية». يلزم فتح الموقع عبر HTTPS.",
     eyebrow:"تشخيص اتصال واضح للاعبين",heroLineOne:"حلّل اتصالك.",heroLineTwo:"وحسّن الشبكة يدويًا.",heroDescription:"اختبارات HTTPS حقيقية، ومقارنة قبل وبعد تغييراتك على Wi‑Fi — دون تعديل اللعبة أو تغيير مسار اتصالها.",honesty:"القياس من المتصفح إلى خادم الاختبار، وليس بنغ PUBG Mobile. صفحة ويب لا تغيّر اتصال اللعبة ولا توجّهه عبر VPN.",footerNote:"أداة مستقلة للتشخيص؛ ليست منتجًا رسميًا من PUBG أو Tencent أو GearUP.",
     jitterLabel:"التذبذب (Jitter)",jitterCaption:"متوسط فرق النتائج الناجحة المتتالية",failureRate:"نسبة فشل الطلبات",failureRateCaption:"فشل طلبات الاختبار؛ ليس فقدان حزم اللعبة",
     profileKicker:"إعدادات هذا الجهاز",profileTitle:"ملف الاختبار",profileIntro:"تُحفظ هذه التفاصيل على جهازك لتخصيص العرض فقط، ولا تُرسل إلى خادم الاختبار.",gameName:"اسم اللعبة",deviceName:"اسم الجهاز",savedLocally:"يُحفظ محليًا",
@@ -50,7 +50,7 @@
     tipDefault1:"جرّب نطاق Wi‑Fi ‏5GHz إذا كان الراوتر والهاتف يدعمانه، أو اقترب من الراوتر.",tipDefault2:"أوقف التنزيلات والبث على الأجهزة الأخرى مؤقتًا.",tipHigh1:"تحقّق من الإشارة، وجرّب Wi‑Fi ‏5GHz عند توفره أو اقترب من الراوتر.",tipVar1:"قد ينتج التذبذب عن ازدحام مؤقت أو إشارة Wi‑Fi غير مستقرة. جرّب 5GHz إذا كان متاحًا."
   });
   Object.assign(translations.en, {
-    appTitle:"PUBG Booster — Connection Diagnostics",installApp:"Install",installedApp:"Installed",installPrompted:"The browser received the install request.",installedMessage:"PUBG Booster was installed.",installInstructions:"On Android, open Chrome’s ⋮ menu and choose “Install app” or “Add to Home screen.” The site must be opened over HTTPS.",
+    appTitle:"PUBG Booster — GearUP Style",installApp:"Install",installedApp:"Installed",installPrompted:"The browser received the install request.",installedMessage:"PUBG Booster was installed.",installInstructions:"On Android, open Chrome’s ⋮ menu and choose “Install app” or “Add to Home screen.” The site must be opened over HTTPS.",
     eyebrow:"Clear connection diagnostics for players",heroLineOne:"Analyze your connection.",heroLineTwo:"Tune your network manually.",heroDescription:"Real HTTPS tests and before/after comparisons for Wi-Fi changes—without modifying the game or routing its traffic.",honesty:"This measures browser-to-test-server response, not PUBG Mobile ping. A website cannot change the game’s connection or route it through a VPN.",footerNote:"Independent diagnostic tool—not an official PUBG, Tencent, or GearUP product.",
     jitterLabel:"Jitter",jitterCaption:"Mean change between adjacent successful results",failureRate:"Request failure rate",failureRateCaption:"Failed test requests—not game packet loss",
     profileKicker:"THIS DEVICE",profileTitle:"Test profile",profileIntro:"Saved on this device to personalize the display only; never sent to the test server.",gameName:"Game name",deviceName:"Device name",savedLocally:"Saved locally",
